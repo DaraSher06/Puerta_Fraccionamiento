@@ -1,4 +1,4 @@
-export const API_URL = "https://698a17c7c04d974bc6a15590.mockapi.io/api/v1/Puerta_Fraccionamiento";
+export const API_URL = "https://698a17c7c04d974bc6a15590.mockapi.io/api/v1/puerta";
 
 export async function getPuertas() {
     const res = await fetch(API_URL);
