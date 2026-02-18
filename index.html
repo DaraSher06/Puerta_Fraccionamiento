@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Puertas Fraccionamiento</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-dark text-white">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-black px-4">
+  <a class="navbar-brand fw-bold">🚪 Puertas IoT</a>
+
+  <div class="ms-auto">
+    <button class="btn btn-outline-light me-2" onclick="mostrarPanel('admin')">Administración</button>
+    <button class="btn btn-outline-light me-2" onclick="mostrarPanel('control')">Control</button>
+    <button class="btn btn-outline-light" onclick="mostrarPanel('monitoreo')">Monitoreo</button>
+  </div>
+</nav>
+
+<div class="container mt-4">
+
+  <!-- PANEL ADMIN -->
+  <div id="panel-admin" class="panel">
+    <h3>Administración de Puertas</h3>
+
+    <form id="formPuerta" class="card card-body bg-secondary mb-3">
+      <input type="text" id="nombre" class="form-control mb-2" placeholder="Nombre" required>
+      <button class="btn btn-success">Agregar Puerta</button>
+    </form>
+
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Estado</th>
+          <th>Obstáculo</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="tablaAdmin"></tbody>
+    </table>
+  </div>
+
+  <!-- PANEL CONTROL -->
+  <div id="panel-control" class="panel d-none">
+    <h3>Panel de Control</h3>
+    <div id="contenedorControl" class="row"></div>
+  </div>
+
+  <!-- PANEL MONITOREO -->
+  <div id="panel-monitoreo" class="panel d-none">
+    <h3>Monitoreo en Tiempo Real</h3>
+
+    <div id="graficos" class="row mb-4"></div>
+
+    <h5>Últimos 10 registros</h5>
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th>Puerta</th>
+          <th>Estado</th>
+          <th>Obstáculo</th>
+          <th>Último acceso</th>
+        </tr>
+      </thead>
+      <tbody id="tablaMonitoreo"></tbody>
+    </table>
+  </div>
+
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

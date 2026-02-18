@@ -1,0 +1,17 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+}
+
+.card {
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
