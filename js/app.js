@@ -1,16 +1,14 @@
 import { getPuertas, createPuerta, updatePuerta, deletePuerta } from "./api.js";
 
 const tablaAdmin = document.getElementById("tablaAdmin");
-const tablaMonitoreo = document.getElementById("tablaMonitoreo");
 const contenedorControl = document.getElementById("contenedorControl");
-const graficos = document.getElementById("graficos");
 const form = document.getElementById("formPuerta");
 
 // -------- CAMBIO DE PANEL --------
-window.mostrarPanel = function(panel) {
+window.mostrarPanel = function (panel) {
     document.querySelectorAll(".panel").forEach(p => p.classList.add("d-none"));
     document.getElementById(`panel-${panel}`).classList.remove("d-none");
-}
+};
 
 // -------- ADMIN --------
 async function cargarAdmin() {
@@ -40,10 +38,10 @@ form.addEventListener("submit", async e => {
     e.preventDefault();
 
     await createPuerta({
-        nombre: nombre.value,
+        nombre: document.getElementById("nombre").value,
         estado: "cerrada",
         obstaculo: "no existe obstaculo",
-        ultimoacceso: new Date()
+        ultimoacceso: new Date().toISOString()
     });
 
     form.reset();
@@ -56,28 +54,33 @@ async function cargarControl() {
     contenedorControl.innerHTML = "";
 
     puertas.forEach(p => {
+        const tieneObstaculo = p.obstaculo === "hay un obstaculo";
         contenedorControl.innerHTML += `
         <div class="col-md-4">
-        <div class="card bg-secondary text-white p-3 mb-3">
-            <h5>${p.nombre}</h5>
-            <p>Estado: ${p.estado}</p>
-            <p>Obstáculo: ${p.obstaculo}</p>
+            <div class="card bg-secondary text-white p-3 mb-3">
+                <h5>${p.nombre}</h5>
+                <p>Estado: <strong>${p.estado}</strong></p>
+                <p>Obstáculo: ${p.obstaculo}</p>
 
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox"
-                ${p.estado === "abierta" ? "checked" : ""}
-                onchange="cambiarEstado('${p.id}', '${p.estado}', '${p.obstaculo}')">
-                <label class="form-check-label">Abrir / Cerrar</label>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox"
+                        id="switch-${p.id}"
+                        ${p.estado === "abierta" ? "checked" : ""}
+                        ${tieneObstaculo && p.estado === "abierta" ? "disabled" : ""}
+                        onchange="cambiarEstado('${p.id}', '${p.estado}', '${p.obstaculo}', this)">
+                    <label class="form-check-label" for="switch-${p.id}">Abrir / Cerrar</label>
+                </div>
+                ${tieneObstaculo ? `<small class="text-warning">⚠ Obstáculo detectado</small>` : ""}
             </div>
-        </div>
         </div>`;
     });
 }
 
-window.cambiarEstado = async (id, estadoActual, obstaculo) => {
-
+window.cambiarEstado = async (id, estadoActual, obstaculo, checkbox) => {
     if (estadoActual === "abierta" && obstaculo === "hay un obstaculo") {
-        alert("⚠ Hay obstáculo. No puede cerrarse.");
+        alert("⚠ Hay un obstáculo. No puede cerrarse la puerta.");
+        // Revertir el checkbox visualmente
+        checkbox.checked = true;
         return;
     }
 
@@ -85,47 +88,15 @@ window.cambiarEstado = async (id, estadoActual, obstaculo) => {
 
     await updatePuerta(id, {
         estado: nuevoEstado,
-        ultimoacceso: new Date()
+        ultimoacceso: new Date().toISOString()
     });
 
     cargarControl();
 };
 
-// -------- MONITOREO --------
-async function cargarMonitoreo() {
-    const puertas = await getPuertas();
-
-    tablaMonitoreo.innerHTML = "";
-    graficos.innerHTML = "";
-
-    puertas.slice(-10).forEach(p => {
-        tablaMonitoreo.innerHTML += `
-        <tr>
-            <td>${p.nombre}</td>
-            <td>${p.estado}</td>
-            <td>${p.obstaculo}</td>
-            <td>${new Date(p.ultimoacceso).toLocaleString()}</td>
-        </tr>`;
-    });
-
-    puertas.forEach(p => {
-        graficos.innerHTML += `
-        <div class="col-md-4">
-        <div class="card text-center p-3 
-            ${p.estado === "abierta" ? "bg-success" : "bg-danger"} text-white">
-            <h5>${p.nombre}</h5>
-            <h3>${p.estado.toUpperCase()}</h3>
-        </div>
-        </div>`;
-    });
-}
-
-// REFRESCO CADA 2 SEGUNDOS
-setInterval(() => {
-    cargarMonitoreo();
-}, 2000);
-
 // Inicial
 cargarAdmin();
 cargarControl();
-cargarMonitoreo();
+
+// Refrescar control cada 5 segundos para mantener sincronía
+setInterval(cargarControl, 5000);

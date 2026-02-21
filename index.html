@@ -12,7 +12,7 @@
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-black px-4">
-  <a class="navbar-brand fw-bold"> Puertas de Fraccionamiento </a>
+  <a class="navbar-brand fw-bold">🚪 Puertas de Fraccionamiento</a>
 
   <div class="ms-auto">
     <button class="btn btn-outline-light me-2" onclick="mostrarPanel('admin')">Administración</button>
@@ -28,7 +28,7 @@
     <h3>Administración de Puertas</h3>
 
     <form id="formPuerta" class="card card-body bg-secondary mb-3">
-      <input type="text" id="nombre" class="form-control mb-2" placeholder="Nombre" required>
+      <input type="text" id="nombre" class="form-control mb-2" placeholder="Nombre de la puerta" required>
       <button class="btn btn-success">Agregar Puerta</button>
     </form>
 
@@ -56,8 +56,12 @@
   <div id="panel-monitoreo" class="panel d-none">
     <h3>Monitoreo en Tiempo Real</h3>
 
-    <div id="graficos" class="row mb-4"></div>
+    <!-- GRÁFICA -->
+    <div class="card bg-secondary p-3 mb-4">
+      <canvas id="graficaEstados" height="100"></canvas>
+    </div>
 
+    <!-- TABLA HISTORIAL -->
     <h5>Últimos 10 registros</h5>
     <table class="table table-dark table-striped">
       <thead>
@@ -65,7 +69,7 @@
           <th>Puerta</th>
           <th>Estado</th>
           <th>Obstáculo</th>
-          <th>Último acceso</th>
+          <th>Hora de registro</th>
         </tr>
       </thead>
       <tbody id="tablaMonitoreo"></tbody>
@@ -74,8 +78,10 @@
 
 </div>
 
-<script type="module" src="js/app.js"></script>
+<!-- Chart.js debe cargarse ANTES que monitoreo.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="module" src="js/app.js"></script>
+<script type="module" src="js/monitoreo.js"></script>
 
 <footer class="bg-dark text-white text-center py-3 mt-5">
     Sistema IoT para Puertas Residenciales <br>
