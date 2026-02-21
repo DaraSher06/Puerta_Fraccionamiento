@@ -15,3 +15,346 @@ body {
 .card:hover {
     transform: scale(1.03);
 }
+
+/* ===== PANEL DE CONTROL - TARJETAS DE PUERTA ===== */
+
+.puerta-card {
+    background: #1e1e1e;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.puerta-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Barra de color superior según estado */
+.puerta-card .estado-bar {
+    height: 4px;
+    transition: background 0.4s;
+}
+
+.puerta-card.abierta .estado-bar { background: #198754; }
+.puerta-card.cerrada .estado-bar { background: #dc3545; }
+
+.card-body-inner {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+/* NOMBRE DE PUERTA */
+.puerta-nombre {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    color: #ffffff;
+}
+
+/* ICONO CANDADO */
+.lock-wrapper {
+    margin: 1.2rem auto;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.4rem;
+    transition: background 0.4s, box-shadow 0.4s, color 0.4s;
+}
+
+.lock-wrapper.abierta {
+    background: rgba(25, 135, 84, 0.15);
+    box-shadow: 0 0 20px rgba(25, 135, 84, 0.3);
+    color: #198754;
+}
+
+.lock-wrapper.cerrada {
+    background: rgba(220, 53, 69, 0.15);
+    box-shadow: 0 0 20px rgba(220, 53, 69, 0.3);
+    color: #dc3545;
+}
+
+/* Animación al cambiar estado */
+@keyframes lockBounce {
+    0%   { transform: scale(1); }
+    30%  { transform: scale(1.25) rotate(-10deg); }
+    60%  { transform: scale(0.95) rotate(6deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+.lock-wrapper.animating {
+    animation: lockBounce 0.4s ease;
+}
+
+/* BADGE DE ESTADO */
+.estado-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.estado-label.abierta {
+    background: rgba(25, 135, 84, 0.15);
+    color: #2ecc71;
+    border: 1px solid rgba(25, 135, 84, 0.4);
+}
+
+.estado-label.cerrada {
+    background: rgba(220, 53, 69, 0.15);
+    color: #e74c3c;
+    border: 1px solid rgba(220, 53, 69, 0.35);
+}
+
+/* ALERTA OBSTÁCULO */
+.obstaculo-badge {
+    font-size: 0.72rem;
+    color: #fd7e14;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+}
+
+.obstaculo-badge i { animation: blink 1.2s infinite; }
+
+/* ÚLTIMO ACCESO */
+.ultimo-acceso {
+    background: #161616;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ultimo-acceso .label {
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.68rem;
+}
+
+.ultimo-acceso .value {
+    color: #adb5bd;
+    font-family: monospace;
+    font-size: 0.78rem;
+}
+
+/* BOTÓN DE ACCIÓN */
+.btn-toggle {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.btn-toggle:active  { transform: scale(0.97); }
+.btn-toggle:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.btn-toggle.abrir { background: #198754; color: #fff; }
+.btn-toggle.abrir:hover { background: #157347; }
+
+.btn-toggle.cerrar { background: #dc3545; color: #fff; }
+.btn-toggle.cerrar:hover { background: #b02a37; }
+
+/* ===== PANEL DE CONTROL - TARJETAS DE PUERTA ===== */
+
+.puerta-card {
+    background: #1e1e1e;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.puerta-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Barra de color superior según estado */
+.puerta-card .estado-bar {
+    height: 4px;
+    transition: background 0.4s;
+}
+
+.puerta-card.abierta .estado-bar { background: #198754; }
+.puerta-card.cerrada .estado-bar { background: #dc3545; }
+
+.card-body-inner {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+/* NOMBRE DE PUERTA */
+.puerta-nombre {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    color: #ffffff;
+}
+
+/* ICONO CANDADO */
+.lock-wrapper {
+    margin: 1.2rem auto;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.4rem;
+    transition: background 0.4s, box-shadow 0.4s, color 0.4s;
+}
+
+.lock-wrapper.abierta {
+    background: rgba(25, 135, 84, 0.15);
+    box-shadow: 0 0 20px rgba(25, 135, 84, 0.3);
+    color: #198754;
+}
+
+.lock-wrapper.cerrada {
+    background: rgba(220, 53, 69, 0.15);
+    box-shadow: 0 0 20px rgba(220, 53, 69, 0.3);
+    color: #dc3545;
+}
+
+/* Animación al cambiar estado */
+@keyframes lockBounce {
+    0%   { transform: scale(1); }
+    30%  { transform: scale(1.25) rotate(-10deg); }
+    60%  { transform: scale(0.95) rotate(6deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+.lock-wrapper.animating {
+    animation: lockBounce 0.4s ease;
+}
+
+/* BADGE DE ESTADO */
+.estado-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.estado-label.abierta {
+    background: rgba(25, 135, 84, 0.15);
+    color: #2ecc71;
+    border: 1px solid rgba(25, 135, 84, 0.4);
+}
+
+.estado-label.cerrada {
+    background: rgba(220, 53, 69, 0.15);
+    color: #e74c3c;
+    border: 1px solid rgba(220, 53, 69, 0.35);
+}
+
+/* OBSTÁCULO */
+.obstaculo-badge {
+    font-size: 0.72rem;
+    margin-bottom: 1rem;
+    padding: 5px 12px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.obstaculo-badge.con-obstaculo {
+    color: #fd7e14;
+    background: rgba(253, 126, 20, 0.1);
+    border: 1px solid rgba(253, 126, 20, 0.3);
+}
+
+.obstaculo-badge.sin-obstaculo {
+    color: #2ecc71;
+    background: rgba(46, 204, 113, 0.1);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+}
+
+.obstaculo-badge.con-obstaculo i { animation: blink 1.2s infinite; }
+
+/* ÚLTIMO ACCESO */
+.ultimo-acceso {
+    background: #161616;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ultimo-acceso .label {
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.68rem;
+}
+
+.ultimo-acceso .value {
+    color: #adb5bd;
+    font-family: monospace;
+    font-size: 0.78rem;
+}
+
+/* BOTÓN DE ACCIÓN */
+.btn-toggle {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.btn-toggle:active  { transform: scale(0.97); }
+.btn-toggle:disabled { opacity: 0.35; cursor: not-allowed; }
+
+.btn-toggle.abrir { background: #198754; color: #fff; }
+.btn-toggle.abrir:hover { background: #157347; }
+
+.btn-toggle.cerrar { background: #dc3545; color: #fff; }
+.btn-toggle.cerrar:hover { background: #b02a37; }

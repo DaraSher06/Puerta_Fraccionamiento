@@ -4,8 +4,48 @@ import { getPuertas } from "./api.js";
 let historial = [];
 let chart = null;
 
+// Registro de puertas con obstáculo para no repetir notificación
+const obstaculosNotificados = new Set();
+
+// -------- NOTIFICACIONES --------
+async function solicitarPermisoNotificaciones() {
+    if (!("Notification" in window)) return;
+    if (Notification.permission === "default") {
+        await Notification.requestPermission();
+    }
+}
+
+function notificarObstaculo(puerta) {
+    if (Notification.permission !== "granted") return;
+
+    new Notification("⚠ Obstáculo detectado", {
+        body: `La puerta "${puerta.nombre}" tiene un obstáculo y no puede cerrarse.`,
+        icon: "assets/img/favicon.jpg"
+    });
+}
+
+function verificarObstaculos(puertas) {
+    puertas.forEach(p => {
+        const tieneObstaculo = p.obstaculo === "hay un obstaculo";
+
+        if (tieneObstaculo && !obstaculosNotificados.has(p.id)) {
+            // Puerta nueva con obstáculo — notificar
+            notificarObstaculo(p);
+            obstaculosNotificados.add(p.id);
+        } else if (!tieneObstaculo && obstaculosNotificados.has(p.id)) {
+            // El obstáculo se resolvió — quitar del registro para notificar si vuelve
+            obstaculosNotificados.delete(p.id);
+        }
+    });
+}
+
+// --------------------------------
+
 async function actualizarMonitoreo() {
     const puertas = await getPuertas();
+
+    // Verificar obstáculos y lanzar notificaciones si aplica
+    verificarObstaculos(puertas);
 
     // Acumular cada puerta como un registro nuevo en el historial
     puertas.forEach(p => {
@@ -23,6 +63,9 @@ async function actualizarMonitoreo() {
     renderTabla();
     renderGrafica(puertas);
 }
+
+// Pedir permiso al cargar
+solicitarPermisoNotificaciones();
 
 function renderTabla() {
     const tbody = document.getElementById("tablaMonitoreo");

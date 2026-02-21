@@ -49,32 +49,8 @@ form.addEventListener("submit", async e => {
 });
 
 // -------- CONTROL --------
-async function cargarControl() {
-    const puertas = await getPuertas();
-    contenedorControl.innerHTML = "";
 
-    puertas.forEach(p => {
-        const tieneObstaculo = p.obstaculo === "hay un obstaculo";
-        contenedorControl.innerHTML += `
-        <div class="col-md-4">
-            <div class="card bg-secondary text-white p-3 mb-3">
-                <h5>${p.nombre}</h5>
-                <p>Estado: <strong>${p.estado}</strong></p>
-                <p>Obstáculo: ${p.obstaculo}</p>
-
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox"
-                        id="switch-${p.id}"
-                        ${p.estado === "abierta" ? "checked" : ""}
-                        ${tieneObstaculo && p.estado === "abierta" ? "disabled" : ""}
-                        onchange="cambiarEstado('${p.id}', '${p.estado}', '${p.obstaculo}', this)">
-                    <label class="form-check-label" for="switch-${p.id}">Abrir / Cerrar</label>
-                </div>
-                ${tieneObstaculo ? `<small class="text-warning">⚠ Obstáculo detectado</small>` : ""}
-            </div>
-        </div>`;
-    });
-}
+import { cargarControl } from "./control.js";
 
 window.cambiarEstado = async (id, estadoActual, obstaculo, checkbox) => {
     if (estadoActual === "abierta" && obstaculo === "hay un obstaculo") {
