@@ -1,182 +1,137 @@
-![Status](https://img.shields.io/badge/status-academic-blue)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)
-![Chart.js](https://img.shields.io/badge/Chart.js-4.x-green)
+# 🚧 Sistema Inteligente de Control y Monitoreo de Accesos
 
+Aplicación web que simula un sistema IoT para el **control dinámico y monitoreo en tiempo real de accesos residenciales**, permitiendo gestionar el estado de múltiples fraccionamientos y visualizar sus eventos mediante una gráfica interactiva.
 
-🚧 Sistema IoT de Control y Monitoreo de Accesos Residenciales
-📋 1. Descripción General
+El proyecto está desarrollado utilizando manipulación del DOM, lógica modular separada y visualización de datos con **Chart.js**.
 
-El presente proyecto consiste en el desarrollo de una aplicación web para el control y monitoreo en tiempo real de accesos vehiculares en fraccionamientos residenciales, simulando un entorno IoT.
+---
 
-La solución implementa:
+## 🚀 Características
 
-Control dinámico del estado de puertas (ABIERTA / CERRADA)
+- Cambio dinámico de estado (ABIERTA / CERRADA)
+- Validación de obstáculo antes de abrir
+- Interfaz interactiva sin botones adicionales
+- Registro acumulativo de movimientos
+- Visualización gráfica en tiempo real
+- Actualización automática del monitoreo
+- Diseño modular (control + monitoreo)
 
-Validación de condición de obstáculo
+---
 
-Registro histórico de eventos
+## 🧱 Tecnologías utilizadas
 
-Visualización gráfica en tiempo real
+- **HTML5**
+- **CSS3**
+- **JavaScript Vanilla (ES6)**
+- **Chart.js**
+- **Bootstrap (si lo estás usando)**
 
-Arquitectura modular basada en separación de responsabilidades
+---
 
-El sistema simula dispositivos IoT conectados mediante una interfaz web interactiva.
-
-🎯 2. Objetivos
-Objetivo General
-
-Desarrollar una solución web que permita la administración y monitoreo dinámico de dispositivos IoT simulados.
-
-Objetivos Específicos
-
-Implementar un sistema CRUD de dispositivos
-
-Simular estados operativos en tiempo real
-
-Registrar los últimos 10 eventos de modificación
-
-Visualizar métricas mediante gráfica dinámica
-
-Aplicar buenas prácticas de organización de proyecto
-
-🏗 3. Arquitectura del Sistema
+## 🏗 Arquitectura del Proyecto
 
 El sistema está dividido en dos módulos principales:
 
-🔹 Módulo de Control (control.js)
-
+### 🔹 control.js
 Responsable de:
+- Gestionar eventos de clic
+- Cambiar estado de cada acceso
+- Validar obstáculos
+- Actualizar estilos dinámicamente
+- Enviar datos al módulo de monitoreo
 
-Manejo de eventos de clic
-
-Cambio de estado dinámico
-
-Validación de obstáculo
-
-Actualización visual del componente
-
-Envío de eventos al módulo de monitoreo
-
-🔹 Módulo de Monitoreo (monitoreo.js)
-
+### 🔹 monitoreo.js
 Responsable de:
+- Registrar cambios realizados
+- Generar gráfica dinámica con Chart.js
+- Acumular historial de movimientos
+- Refrescar visualización automáticamente
 
-Actualización automática cada 2 segundos
+---
 
-Renderización de gráfica en tiempo real (Chart.js)
+## 🏘 Fraccionamientos Simulados
 
-Registro acumulativo de los últimos 10 cambios
+- Tulipanes  
+- C Doria  
+- Venta Prieta  
+- Palmar  
+- Vicente Segura  
+- Cubitos  
 
-Organización cronológica por timestamp
+---
 
-🧩 4. Funcionalidades Técnicas
-4.1 Control Dinámico
-
-Las tarjetas son completamente clickeables
-
-No existen botones independientes
-
-El estado cambia con un solo evento onclick
-
-Se conserva la validación de obstáculo
-
-Se mantiene sincronización con la gráfica
-
-4.2 Registro Histórico
-
-Se almacenan únicamente los últimos 10 registros
-
-Se acumulan conforme al horario de modificación
-
-Se ordenan cronológicamente
-
-Se actualizan automáticamente cada 2 segundos
-
-4.3 Visualización en Tiempo Real
-
-Implementación con Chart.js
-
-Actualización dinámica sin recargar la página
-
-Representación gráfica del estado de accesos
-
-🛠 5. Tecnologías Utilizadas
-Tecnología	Uso
-HTML5	Estructura del sistema
-CSS3	Diseño visual y estilos
-JavaScript (ES6)	Lógica de negocio
-Chart.js	Visualización gráfica
-Git	Control de versiones
-
-📂 6. Estructura del Proyecto
-📁 sistema-iot-accesos/
+## 📂 Estructura del Proyecto
+📁 sistema-control-accesos/
 │
-├── 📄 index.html
-├── 📁 css/
-│   └── styles.css
-│
-├── 📁 js/
-│   ├── control.js
-│   └── monitoreo.js
-│
-├── 📁 assets/
-│   └── favicon.ico
-│
-└── 📄 README.md
+├── index.html
+├── css/
+│ └── styles.css
+├── js/
+│ ├── control.js
+│ └── monitoreo.js
+└── README.md
 
-🔄 8. Flujo de Funcionamiento
+---
 
-Usuario hace clic en una tarjeta de control.
+## ⚙️ Funcionamiento del Sistema
 
-Se valida condición de obstáculo.
+Cada fraccionamiento mantiene atributos internos como:
 
-Se cambia el estado.
+- `data-estado`
+- `data-obstaculo`
 
-Se actualiza el estilo visual.
+Flujo de ejecución:
 
-Se registra el evento con timestamp.
+1. El usuario hace clic sobre la tarjeta.
+2. Se valida si existe obstáculo.
+3. Se cambia el estado (ABIERTA / CERRADA).
+4. Se actualiza el diseño visual.
+5. Se registra el evento.
+6. Se actualiza la gráfica de monitoreo.
 
-El módulo de monitoreo refresca cada 2 segundos.
+---
 
-Se actualiza la gráfica y la tabla histórica.
+## 📊 Visualización de Datos
 
-📊 9. Características Técnicas Destacadas
+La sección de monitoreo incluye:
 
-Separación de lógica por módulos
+- Gráfica dinámica generada con Chart.js
+- Acumulación de movimientos recientes
+- Actualización automática
+- Representación visual del estado general del sistema
 
-Actualización asincrónica sin recarga
+---
 
-Manipulación dinámica del DOM
+## 🎯 Objetivo Académico
 
-Manejo de eventos eficiente
+Simular un entorno IoT aplicado a:
 
-Organización profesional del proyecto
+- Automatización residencial
+- Gestión de accesos
+- Sistemas de monitoreo en tiempo real
+- Arquitectura modular en JavaScript
+- Interacción dinámica con el DOM
 
-Diseño responsivo
+---
 
-Favicon personalizado
+## 🔮 Mejoras Futuras
 
-Footer institucional con autoría
+- Persistencia con LocalStorage
+- Integración con API REST real
+- Base de datos externa
+- Autenticación de usuarios
+- Dashboard administrativo avanzado
+- Integración con sensores físicos IoT
 
-🔐 10. Escalabilidad
+---
 
-El sistema puede evolucionar hacia:
+## 👨‍💻 Autor
 
-Conexión con API REST (MockAPI o backend real)
+**Dara Sharleen Antonio Azuara**  
+Proyecto académico – Implementación de Soluciones IoT  
 
-Persistencia en base de datos (MySQL / Firebase)
+---
 
-Integración con sensores físicos
+## 📜 Licencia
 
-Implementación con Angular o React
-
-Autenticación de usuarios
-
-Dashboard administrativo avanzado
-
-👨‍💻 11. Autor
-
-Nombre: Dara Sharleen Antonio Azuara
-Materia: Implementación de Soluciones IoT
-Nivel: Universitario
-Tipo de Proyecto: Académico
+Uso académico y educativo.
