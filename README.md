@@ -1,6 +1,6 @@
 # 🚧 Sistema Inteligente de Control y Monitoreo de Accesos
 
-Aplicación web que simula un sistema IoT para el **control dinámico y monitoreo en tiempo real de accesos residenciales**, permitiendo gestionar el estado de múltiples fraccionamientos y visualizar sus eventos mediante una gráfica interactiva.
+Aplicación web que simula un sistema IoT para la  **administracion el contro y monitoreo en tiempo real de accesos residenciales**, permitiendo gestionar el estado de múltiples fraccionamientos y visualizar sus eventos mediante una gráfica interactiva.
 
 El proyecto está desarrollado utilizando manipulación del DOM, lógica modular separada y visualización de datos con **Chart.js**.
 
@@ -24,7 +24,7 @@ El proyecto está desarrollado utilizando manipulación del DOM, lógica modular
 - **CSS3**
 - **JavaScript Vanilla (ES6)**
 - **Chart.js**
-- **Bootstrap (si lo estás usando)**
+- **Bootstrap**
 
 ---
 
@@ -61,14 +61,22 @@ Responsable de:
 ---
 
 ## 📂 Estructura del Proyecto
+
 📁 sistema-control-accesos/
 │
+
 ├── index.html
+
 ├── css/
+
 │ └── styles.css
+
 ├── js/
+
 │ ├── control.js
+
 │ └── monitoreo.js
+
 └── README.md
 
 ---
@@ -109,19 +117,7 @@ Simular un entorno IoT aplicado a:
 - Automatización residencial
 - Gestión de accesos
 - Sistemas de monitoreo en tiempo real
-- Arquitectura modular en JavaScript
 - Interacción dinámica con el DOM
-
----
-
-## 🔮 Mejoras Futuras
-
-- Persistencia con LocalStorage
-- Integración con API REST real
-- Base de datos externa
-- Autenticación de usuarios
-- Dashboard administrativo avanzado
-- Integración con sensores físicos IoT
 
 ---
 
@@ -130,8 +126,3 @@ Simular un entorno IoT aplicado a:
 **Dara Sharleen Antonio Azuara**  
 Proyecto académico – Implementación de Soluciones IoT  
 
----
-
-## 📜 Licencia
-
-Uso académico y educativo.
