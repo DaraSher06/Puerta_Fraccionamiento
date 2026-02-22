@@ -1,4 +1,4 @@
-# 🚧 Sistema Inteligente de Control y Monitoreo de Accesos
+# 🚧 Sistema de Administracion, Control y Monitoreo de Accesos a Puertas de Fraccionamiento en Residenciales
 
 Aplicación web que simula un sistema IoT para la  **administracion el contro y monitoreo en tiempo real de accesos residenciales**, permitiendo gestionar el estado de múltiples fraccionamientos y visualizar sus eventos mediante una gráfica interactiva.
 
@@ -22,7 +22,6 @@ El proyecto está desarrollado utilizando manipulación del DOM, lógica modular
 
 - **HTML5**
 - **CSS3**
-- **JavaScript Vanilla (ES6)**
 - **Chart.js**
 - **Bootstrap**
 
@@ -46,17 +45,6 @@ Responsable de:
 - Generar gráfica dinámica con Chart.js
 - Acumular historial de movimientos
 - Refrescar visualización automáticamente
-
----
-
-## 🏘 Fraccionamientos Simulados
-
-- Tulipanes  
-- C Doria  
-- Venta Prieta  
-- Palmar  
-- Vicente Segura  
-- Cubitos  
 
 ---
 
@@ -117,6 +105,7 @@ Simular un entorno IoT aplicado a:
 - Automatización residencial
 - Gestión de accesos
 - Sistemas de monitoreo en tiempo real
+- Administración de registro
 - Interacción dinámica con el DOM
 
 ---
